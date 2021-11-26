@@ -1,0 +1,2 @@
+s.charAt(i) < '0' || s.charAt(i) > '9') && (s.charAt(i) != '+' && s.charAt(i) != '-'
+s.charAt(0) < '0' || s.charAt(0) > '9') || s.charAt(lun) < '0' || s.charAt(lun) > '9'
