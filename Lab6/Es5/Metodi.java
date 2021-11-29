@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class Metodi{
   public static int sceltaMenu(){
     Scanner input = new Scanner(System.in);
+    System.out.println("---------------------------------------------------");
     System.out.println("Menu - Inserire il numero dell'opzione desiderata");
     System.out.println("1 – Inserisci/cambia la parola chiave");
     System.out.println("2 – Cifra un messaggio");
@@ -44,14 +45,11 @@ public class Metodi{
         if (97 + i + j <= 122) {
           charCode = 97 + i + j;
         }else{
-          charCode = 71 + i + j;
+          charCode = 71 + i + j; //alfabeto riparte da capo
         }
         c = (char) charCode;
-        matrice[i][j] = c;
-        //System.out.print("|" + matrice[i][j]);
+        matrice[i][j] = c; //assegnamento valori a matrice
       }
-      //System.out.print("|");
-      //System.out.println();
     }
     return matrice;
   }
