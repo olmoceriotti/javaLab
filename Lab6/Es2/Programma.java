@@ -2,51 +2,27 @@ import java.util.Scanner;
 public class Programma{
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
-    char ultimoTent = '#';
-    int presCount, counterT = 0;
-    String temp;
-    char [] stringa = Metodi.estraiStringaCasuale();
-    int [] pres = new int[stringa.length];
-    char [] tentativi = new char[20];
-    boolean indovinato  = false;
-
-    while (!indovinato && counterT < 20) {
-      int i = 0, count = 0, count2 = 0;
-
-      for(; i < stringa.length; i++){
-        if (pres[i] == 1) {
-          System.out.print(stringa[i]);
-          if (stringa[i] == ultimoTent) {
-            count2++;
-          }
-        }else{
-          System.out.print('-');
-          count++;
-        }
-      }
-      System.out.println("\n**************");
-      if (count2 == 0 && ultimoTent != '#') {
-        System.out.println("Lettera non presente");
-      }
-      if (counterT != 0) {
-        tentativi[counterT] = ultimoTent;
-        Metodi.tentativi(tentativi, counterT);
-      }
-      if (count == 0) {
-        System.out.println("Indovinato!");
-        indovinato = true;
-      }
-      if (!indovinato) {
-        System.out.println("Inserire una lettera:");
-        temp = input.nextLine();
-        ultimoTent = temp.charAt(0);
-        for (int j = 0; j < pres.length; j++ ) {
-          if (stringa[j] == ultimoTent) {
-            pres[j] = 1;
-          }
-        }
-        counterT++;
-      }
+    String parola = Metodi.estraiStringaCasuale();
+    char [] parolaC = new char[parola.length()];
+    boolean [] map = new boolean[(parola.length() + 1)];
+    int tentativi = 0;
+    map[parola.length()] = false;
+    char letteraUtente;
+    System.out.println(parola);
+    for (int i = 0; i < parola.length(); i++) {
+      parolaC[i] = parola.charAt(i);
+    }
+    while (map[parola.length()] == false && tentativi < 20) {
+      Metodi.stampaLettereIndovinate(parolaC, map);
+      System.out.println("Inserire una lettere da verificare:");
+      letteraUtente = input.nextLine().charAt(0);
+      Metodi.scopriLettera(parolaC, map, letteraUtente);
+      tentativi++;
+    }
+    if (map[parola.length()] == true) {
+      System.out.println("Indovinato, la parola era " + parola + "!");
+    }else{
+      System.out.println("Tentativi esauriti, la parola era " + parola);
     }
   }
 }
