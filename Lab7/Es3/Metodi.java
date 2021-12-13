@@ -24,7 +24,7 @@ public class Metodi{
   }
 
   public static void scriviElemento(int [] array, int n, int m, int i, int j, int elemento){
-    int posizione = (i*m) + j;
+    int posizione = (i*m) + j; //moltiplico il valore i che indica la riga della finta matrice a cui accedere per m, numero di colonne per ogni "riga", in modo da ritovarmi all'indice iniziale della finta riga poi aggiungo la posizione a cui accedere
     array[posizione] = elemento;
   }
 

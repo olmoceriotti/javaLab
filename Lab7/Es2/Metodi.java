@@ -31,7 +31,7 @@ public class Metodi{
     while (!aggiunto) {
       riga = (int) (Math.random() * 20);
       colonna = (int) (Math.random() * 20);
-      System.out.println(riga + " " + colonna);
+      //System.out.println(riga + " " + colonna);
       if (mondo[riga][colonna] == 0) {
         mondo[riga][colonna] = 2;
         aggiunto = true;
@@ -79,12 +79,12 @@ public class Metodi{
   }
 
   public static void stampaMondo(int [][] mondo){
-    for (int i = 0; i < 22; i++) {
+    for (int i = 0; i < 22; i++) { //22 perchè vengono contanti anche i bordi del mondo
       System.out.print("*");
     }
     System.out.println();
     for (int i = 0; i < mondo.length; i++) {
-      System.out.print('*');
+      System.out.print('*'); //bordo sinistro
       for (int j  = 0; j < mondo[0].length; j++) {
         switch (mondo[i][j]) {
           case 1:
@@ -101,7 +101,7 @@ public class Metodi{
           break;
         }
       }
-      System.out.print('*');
+      System.out.print('*'); //bordo destro
       System.out.println();
     }
     for (int i = 0; i < 22; i++) {
