@@ -25,6 +25,7 @@ public class Metodi{
         System.out.println("\n-+-+-");
       }else{
         System.out.println();
+        System.out.println("***************");
       }
     }
   }
@@ -36,21 +37,29 @@ public class Metodi{
 
   public static void mossaComputer(int [][] gioco){
     boolean posizione = false;
-    for (int i = 0; i < 6 && !posizione; i++) {
+    for (int i = -1; i < 6 && !posizione; i++) {
       switch (i) {
-        //se l'avversario ha occupato due caselle di fila, occupare la casella rimanente;
-        case 0:
+        //PASSO AGGIUNTIVO FORSE SBAGLIATO (però funziona lol)
+        //SE possibile vincere, vinci
+        case -1:
         int rowCounter = 0, colCounter = 0, rDiagCounter = 0, lDiagCounter = 0;
           for (int j = 0; j < 3 && !posizione; j++) {
+            rowCounter = 0;
+            colCounter = 0;
+            rDiagCounter = 0;
+            lDiagCounter = 0;
             for (int a = 0; a < 3; a++) {
-              if (gioco[j][a] == 1) {
+              if (gioco[j][a] == 2) {
                 rowCounter +=1;
               }
-              if (gioco[a][j] == 1) {
+              if (gioco[a][j] == 2) {
                 colCounter +=1;
               }
-              if (gioco[a][a] == 1) {
+              if (gioco[a][a] == 2) {
                 rDiagCounter += 1;
+              }
+              if (gioco[2-a][a] == 2) {
+                lDiagCounter += 1;
               }
             }
             if (rowCounter == 2 && !posizione) {
@@ -73,21 +82,113 @@ public class Metodi{
               for (int a = 0; a < 3; a++) {
                 if (gioco[a][a] == 0) {
                   gioco[a][a] = 2;
+                  posizione = true;
+                }
+              }
+            }
+            if (lDiagCounter == 2 && !posizione) {
+              for (int a = 0; a < 3; a++) {
+                if (gioco[2-a][a] == 0) {
+                  gioco[2-a][a] = 2;
+                  posizione = true;
                 }
               }
             }
           }
-
+        System.out.println(i);
+        break;
+        //se l'avversario ha occupato due caselle di fila, occupare la casella rimanente;
+        case 0:
+        rowCounter = 0;
+        colCounter = 0;
+        rDiagCounter = 0;
+        lDiagCounter = 0;
+          for (int j = 0; j < 3 && !posizione; j++) {
+            rowCounter = 0;
+            colCounter = 0;
+            rDiagCounter = 0;
+            lDiagCounter = 0;
+            for (int a = 0; a < 3; a++) {
+              if (gioco[j][a] == 1) {
+                rowCounter +=1;
+              }
+              if (gioco[a][j] == 1) {
+                colCounter +=1;
+              }
+              if (gioco[a][a] == 1) {
+                rDiagCounter += 1;
+              }
+              if (gioco[2-a][a] == 1) {
+                lDiagCounter += 1;
+              }
+            }
+            if (rowCounter == 2 && !posizione) {
+              for (int a = 0; a < 3; a++) {
+                if (gioco[j][a] == 0) {
+                  gioco[j][a] = 2;
+                  posizione = true;
+                }
+              }
+            }
+            if (colCounter == 2 && !posizione) {
+              for (int a = 0; a < 3; a++) {
+                if (gioco[a][j] == 0) {
+                  gioco[a][j] = 2;
+                  posizione = true;
+                }
+              }
+            }
+            if (rDiagCounter == 2 && !posizione) {
+              for (int a = 0; a < 3; a++) {
+                if (gioco[a][a] == 0) {
+                  gioco[a][a] = 2;
+                  posizione = true;
+                }
+              }
+            }
+            if (lDiagCounter == 2 && !posizione) {
+              for (int a = 0; a < 3; a++) {
+                if (gioco[2-a][a] == 0) {
+                  gioco[2-a][a] = 2;
+                  posizione = true;
+                }
+              }
+            }
+          }
+        System.out.println(i);
         break;
         //se c'è una mossa che crea due coppie di caselle adiacenti in un colpo solo, scegliere quella;
         case 1:
-
+          int twoCount = 0;
+          for (int j = 0; j < 3 && !posizione; j++) {
+            for (int a = 0; a < 3 && !posizione; a++) {
+              if (gioco[j][a] == 0) {
+                twoCount = 0;
+                for (int e = j -1; e < 3; e++) {
+                  for (int b = a -1; b < 3; b++) {
+                    if (b >= 0 && b < 2 && e < 2 && e >= 0) {
+                      if (gioco[e][b] == 2) {
+                        twoCount += 1;
+                      }
+                    }
+                  }
+                }
+                if (twoCount >= 2) {
+                  gioco[j][a] = 2;
+                  posizione = true;
+                }
+              }
+            }
+          }
+        System.out.println(i);
         break;
         //se la casella centrale è libera, occuparla;
         case 2:
           if (gioco[1][1] == 0) {
             gioco[1][1] = 2;
+            posizione = true;
           }
+        System.out.println(i);
         break;
         //se l'avversario ha occupato una casella d'angolo, occupare la casella opposta;
         case 3:
@@ -112,9 +213,11 @@ public class Metodi{
             }
             if (gioco[j][a] == 1 && gioco[jOpp][aOpp] == 0) {
               gioco[jOpp][aOpp] = 2;
+              posizione = true;
             }
           }
         }
+        System.out.println(i);
         break;
         //se c'è un angolo vuoto, occuparlo;
         case 4:
@@ -128,9 +231,11 @@ public class Metodi{
               }
               if (gioco[j][a] == 0) {
                 gioco[j][a] = 2;
+                posizione = true;
               }
             }
           }
+          System.out.println(i);
         break;
         //occupare una casella vuota qualsiasi.
         case 5:
@@ -142,6 +247,7 @@ public class Metodi{
               }
             }
           }
+          System.out.println(i);
         break;
         default:
           System.out.println("ciaone");

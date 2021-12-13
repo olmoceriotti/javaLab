@@ -4,6 +4,7 @@ public class Programma{
     Scanner input = new Scanner(System.in);
     char sceltaUtente;
     boolean primaMossa;
+    int counter = 0;
     int [][] gioco = Metodi.creaNuovaConfigurazione();
     do {
       System.out.println("Vuoi effetturare la prima mossa? s/n");
@@ -18,22 +19,36 @@ public class Programma{
       primaMossa = false;
     }
 
-    while(Metodi.verificaVittoria(gioco) == 0){
+    while(Metodi.verificaVittoria(gioco) == 0 && counter < 9){
       if (primaMossa) {
         Metodi.mossaUtente(gioco);
         Metodi.stampaConfigurazioneDiGioco(gioco);
+        counter++;
         if (Metodi.verificaVittoria(gioco) == 0) {
           Metodi.mossaComputer(gioco);
+          System.out.println("Mossa computer:");
           Metodi.stampaConfigurazioneDiGioco(gioco);
+          counter++;
         }
       }else{
         Metodi.mossaComputer(gioco);
+        System.out.println("Mossa computer:");
         Metodi.stampaConfigurazioneDiGioco(gioco);
+        counter++;
         if (Metodi.verificaVittoria(gioco) == 0) {
           Metodi.mossaUtente(gioco);
           Metodi.stampaConfigurazioneDiGioco(gioco);
+        counter++;
         }
       }
+    }
+
+    if (Metodi.verificaVittoria(gioco) == 0) {
+      System.out.println("Pareggio!");
+    }else if(Metodi.verificaVittoria(gioco) == 1){
+      System.out.println("Vittoria!");
+    }else{
+      System.out.println("Sconfitta!");
     }
 
   }
