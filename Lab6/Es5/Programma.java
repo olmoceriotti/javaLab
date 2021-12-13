@@ -39,6 +39,6 @@ public class Programma{
       }
     }
     System.out.println("Programma terminato");
-
+    input.close();
   }
 }
