@@ -1,0 +1,19 @@
+Classe Programma
+
+Riceve due stringhe di caratteri da linea di comando (nel parametro String[] args) e le copia nelle stringhe espressione (la prima) e valori (la seconda)
+la prima stringa è un'espressione tipo “A+2-B”, di sole lettere A-E o cifre 0-9, separati da operatori + e -;
+passa espressione al metodo checkEspr(): se ritorna false uscire dal programma;
+passa valori al metodo checkValori(): se ritorna false uscire dal programma;
+crea un array tabella di 5 interi e lo inizializza con valori tutti a 0;
+in tabella andranno i valori da dare alle lettere A-E dell'espressione, posizionati negli elementi di tabella da [0] a [4];
+esegue l'invocazione estraiValori(valori,tabella);
+esegue l'invocazione sostituisci(espressione,tabella) e memorizza il risultato nella stringa daCalc;
+Stampa a video il risultato dell'invocazione del metodo calcola(daCalc).
+
+Classe Metodi, definire I seguenti metodi:
+
+boolean checkEspr(), che riceve una stringa e ritorna true solo se la stringa è una sequenza che alterna correttamente lettera A-E o cifra 0-9 ed un operatore + o - (“A-C+2”->true, “AB-2”->false);
+boolean checkValori(), che riceve una stringa e ritorna true solo se la stringa è una sequenza che alterna correttamente lettera A-E e cifra 0-9 separati da : (“A:2B:9”->true, “A1B-2”->false);
+void estraiValori(), che riceve una stringa come primo argomento e un array di 5 interi come secondo, e estrae dalla stringa i valori da dare alle lettere e li mette nelle corrette caselle dell'array: “A:2E:1”->2/0/0/0/1;
+String sostituisci(), che riceve una stringa come primo argomento e un array di 5 interi come secondo, e restituisce una stringa ottenuta dalla prima sostituendo le lettere con I giusti valori presi dall'array di interi: “A+B” con array visto sopra → “2+0”;
+int calcola(), che riceve una stringa prodotta da sostituisci() e restituisce l'intero ottenuto calcolando il valore di tale espressione: “2+0”->2.
