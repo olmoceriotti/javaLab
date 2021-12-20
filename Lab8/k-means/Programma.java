@@ -4,7 +4,7 @@ public class Programma{
   public static void main(String[] args) throws FileNotFoundException{
     /*Valori N e M non richieste ma tratti da dataset*/
     int numeroCluster = 3, iter = 1000, nIter = 0;
-    double obiettivo = 0, alfa = 0.1, precisione = 0, precisioneN = 0, precisioneM;
+    double obiettivo = 0, alfa = 0.00001, precisione = 2, precisioneN = 0, precisioneM;
     double [][] dati;
     dati = Metodi.inizializzaDati();
     //Metodi.stampaMatrice(dati);
@@ -17,13 +17,25 @@ public class Programma{
       precisioneM = precisioneN;
       precisioneN = obiettivo;
       if (nIter > 1) {
-        precisione = precisioneN-precisioneM;
+        precisione = precisioneM - precisioneN;
       }
       nIter++;
     } while (precisione > alfa && nIter  < iter);
+    int countA = 0, countB = 0, countC = 0;
     System.out.println("Cluster: ");
     for (int i = 0; i < cluster.length; i++) {
       System.out.println(cluster[i]);
+      switch (cluster[i]) {
+        case 0:
+          countA++;
+        break;
+        case 1:
+          countB++;
+        break;
+        case 2:
+          countC++;
+        break;
+      }
     }
     System.out.println("Numero iterazioni: " + nIter);
     System.out.println("Obiettivo in iterazione " + (nIter - 1) + ": " + precisioneM + " e obiettivo in iterazione " + nIter + ": " + precisioneN);
@@ -34,5 +46,8 @@ public class Programma{
       System.out.println("Terminazione per raggiungimento numero massimo di iterazioni");
     }
     System.out.println("Massimo di iterazioni " + iter);
+    System.out.println("Cluster A: " + countA);
+    System.out.println("Cluster B: " + countB);
+    System.out.println("Cluster C: " + countC);
   }
 }

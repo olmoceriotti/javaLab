@@ -97,8 +97,9 @@ public class Metodi{
         distanza = 0;
         for (int a = 0; a < dati[0].length; a++) {
           dTemp = Math.pow(dati[i][a] - centri[j][a], 2);
-          distanza += Math.sqrt(dTemp);
+          distanza += dTemp;
         }
+        distanza = Math.sqrt(distanza);
         if (distanza < minDist) {
           minDist = distanza;
           clusterIndex = j;
@@ -132,10 +133,10 @@ public class Metodi{
       distanza = 0;
       for (int j = 0; j < dati[0].length; j++) {
         dTemp = Math.pow(dati[i][j] - centri[cluster[i]][j], 2);
-        distanza += Math.sqrt(dTemp);
+        distanza += dTemp;
       }
-      obiettivo += distanza;
+      obiettivo += Math.sqrt(distanza);
     }
-    return 0;
+    return obiettivo;
   }
 }
