@@ -1,5 +1,6 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class Metodi{
   public static int calcolaNumeroOggetti() throws FileNotFoundException{
     File dataset = new File("Data/iris.data");
@@ -85,6 +86,11 @@ public class Metodi{
       numeriEstratti[i] = indice;
       centri[i] = dati[indice];
     }
+    System.out.println("Numeri estratti: ");
+    for (int i = 0; i < numeriEstratti.length; i++) {
+      System.out.print(numeriEstratti[i] + " ");
+    }
+    System.out.println();
     return centri;
   }
 

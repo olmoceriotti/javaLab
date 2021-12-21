@@ -1,10 +1,11 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class Programma{
   public static void main(String[] args) throws FileNotFoundException{
     /*Valori N e M non richieste ma tratti da dataset*/
-    int numeroCluster = 3, iter = 1000, nIter = 0;
-    double obiettivo = 0, alfa = 0.00001, precisione = 2, precisioneN = 0, precisioneM;
+    int numeroCluster = 3, iter = 100000, nIter = 0;
+    double obiettivo = 0, alfa = -1, precisione = 2, precisioneN = 0, precisioneM = 0;
     double [][] dati;
     dati = Metodi.inizializzaDati();
     //Metodi.stampaMatrice(dati);
@@ -22,9 +23,12 @@ public class Programma{
       nIter++;
     } while (precisione > alfa && nIter  < iter);
     int countA = 0, countB = 0, countC = 0;
-    System.out.println("Cluster: ");
     for (int i = 0; i < cluster.length; i++) {
-      System.out.println(cluster[i]);
+      System.out.print("Record numero " + i + ": ");
+      for (int j = 0; j < dati[0].length; j++) {
+        System.out.print(dati[i][j] + " " );
+      }
+      System.out.println("cluster: " + cluster[i]);
       switch (cluster[i]) {
         case 0:
           countA++;
