@@ -3,8 +3,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class Programma{
   public static void main(String[] args) throws FileNotFoundException{
-    /*Valori N e M non richiesti ma tratti da dataset*/
-    int numeroCluster = 3, iter = 100000, nIter = 0;
+    Scanner input = new Scanner(System.in);
+    System.out.println("Inserire numero cluster:");
+    int n;
+    do {
+      n = input.nextInt();
+      if (n <= 0) {
+        System.out.println("Numero non valido");
+      }
+    } while (n <= 0);
+    int numeroCluster = n, iter = 100000, nIter = 0;
     double obiettivo = 0, alfa = -1, precisione = 2, precisioneN = 0, precisioneM = 0;
     double [][] dati;
     dati = Metodi.inizializzaDati();
@@ -22,7 +30,9 @@ public class Programma{
       }
       nIter++;
     } while (precisione > alfa && nIter  < iter);
+
     int [] counters = new int[numeroCluster];
+
     for (int i = 0; i < cluster.length; i++) {
       System.out.print("Record numero " + i + ": ");
       for (int j = 0; j < dati[0].length; j++) {
@@ -41,7 +51,7 @@ public class Programma{
     }
     System.out.println("Massimo di iterazioni " + iter);
     for (int i = 0; i < counters.length; i++) {
-      System.out.println("Cluster " + (i + 1) + " : " + counters[i] + " elementi");
+      System.out.println("Cluster " + i + " : " + counters[i] + " elementi");
     }
   }
 }

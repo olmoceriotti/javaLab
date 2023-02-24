@@ -49,7 +49,7 @@ public class Metodi{
     int numeroAttributi = calcolaNumeroAttributi();
     String currentLine;
     String[] currentArray;
-    System.out.println(numeroOggetti + " " + numeroAttributi);
+    //System.out.println(numeroOggetti + " " + numeroAttributi);
     double [][] dati = new double[numeroOggetti][numeroAttributi];
     for (int i = 0; i < numeroOggetti; i++) {
       currentLine = input.nextLine();
